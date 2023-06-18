@@ -7,6 +7,7 @@ int main(void) {
         for(space=0; space<n-line; space++) {
             putchar(' ');
         }
+        
 
         for(number=1; number<line; number++) {
             printf("%d", number);
