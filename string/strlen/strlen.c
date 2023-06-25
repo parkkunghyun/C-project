@@ -12,8 +12,9 @@ int main(void) {
 
 int mystrlen(const char *arr){
     int cnt = 0;
-    for(int j=0; arr[j] != '\0'; j++) {
-        cnt++;
+    while(*arr != '\0') {
+    	cnt++;
+    	arr++;
     }
     return cnt;
 }
