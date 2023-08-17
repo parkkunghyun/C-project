@@ -12,6 +12,7 @@ int arr[16];
 int count = 0;
 int visited[16];
 
+
 void clear()
 {
     for (int i =0; i< N; i++)
@@ -20,32 +21,29 @@ void clear()
     }
 }
 
-void combination(int len, int depth, int start, int sum, int minus)
+void combination(int len, int depth, int start, int sum, int min, int max)
 {
     // 여기서 만들어지는 즉시 체크하는 함수로 보내버리자!
     if (depth == len)
     {
-        if (R <= sum && sum <= L && sum >= X)
+        
+        if (L <= sum && sum <= R && (max - min >= X) )
+        {
+            //printf("%d %d %d \n", sum , max, min);
             count += 1;
+        }
         return ;
     }
 
-    for (int i = start; i< N; i++)
+    for (int i = start; i<N; i++)
     {
         if (visited[i] == 0)
         {
             visited[i] = 1;
-            sum += arr[i];
-            if (minus == -1)
-                minus = arr[i];
-            else
-            {
-                if (minus < arr[i])
-                    minus = arr[i] - minus;
-                else
-                    minus -= arr[i];
-            }
-            combination(len, depth + 1, i, sum, minus);
+            if (min > arr[i])
+                combination(len, depth + 1, i, sum + arr[i],arr[i], max );
+            if (max < arr[i])
+                 combination(len, depth + 1, i, sum + arr[i], min, arr[i] );
             visited[i] = 0;
         }
     }
@@ -62,9 +60,9 @@ int main(void)
     for(int i = 2; i<=N; i++)
     {
         clear();
-        combination(i, 0, 0, 0 ,-1); // 일단 조합을 만들고 그 조합들을 계산하기
+        combination(i, 0, 0, 0, 99999, -10000); // 일단 조합을 만들고 그 조합들을 계산하기
     }
-
+    
     printf("%d\n", count);
     return (0);
 }
