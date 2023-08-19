@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "b14503",
+      "request": "launch",
+      "mainClass": "b14503",
+      "projectName": "C-practice_8e295a1b"
+    },
+    {
+      "type": "java",
       "name": "b1713",
       "request": "launch",
       "mainClass": "b1713",
