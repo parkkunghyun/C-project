@@ -1,34 +1,52 @@
 {
-    "configurations": [
-        
-        {
-            "name": "C/C++: gcc 활성 파일 빌드 및 디버그",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
-            "externalConsole": true,
-            "MIMode": "lldb",
-            "preLaunchTask": "C/C++: gcc 활성 파일 빌드",
-            
-        },
-        {
-            "name": "C/C++: clang 활성 파일 빌드 및 디버그",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "lldb",
-            "preLaunchTask": "C/C++: clang 활성 파일 빌드",
-            
-        }
-    ],
-    "version": "2.0.0"
+  "configurations": [
+    {
+      "type": "java",
+      "name": "b1713",
+      "request": "launch",
+      "mainClass": "b1713",
+      "projectName": "C-practice_8e295a1b"
+    },
+    {
+      "type": "java",
+      "name": "hello",
+      "request": "launch",
+      "mainClass": "hello",
+      "projectName": "C-practice_8e295a1b"
+    },
+    {
+      "type": "java",
+      "name": "Hello",
+      "request": "launch",
+      "mainClass": "Hello",
+      "projectName": "C-practice_8e295a1b"
+    },
+    {
+      "name": "C/C++: gcc 활성 파일 빌드 및 디버그",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": true,
+      "MIMode": "lldb",
+      "preLaunchTask": "C/C++: gcc 활성 파일 빌드"
+    },
+    {
+      "name": "C/C++: clang 활성 파일 빌드 및 디버그",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "lldb",
+      "preLaunchTask": "C/C++: clang 활성 파일 빌드"
+    }
+  ],
+  "version": "2.0.0"
 }
