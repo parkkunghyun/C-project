@@ -8,7 +8,7 @@ public class b20923 {
 	static ArrayList<Integer> sGround = new ArrayList<>(), dGround = new ArrayList<>();
 	static int N, M;
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws IOException {
 		st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
