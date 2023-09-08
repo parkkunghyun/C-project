@@ -132,7 +132,6 @@ public class b2608 {
 			sb.append("I");
 			n -= 1;
 		}
- 
         return sb.toString();
     }
     private static int charChanger(char c) {
