@@ -1,106 +1,93 @@
 import java.io.*;
+import java.util.*;
 
 public class b3085 {
     static int N;
     static char board[][];
-    static int max = 0;
+    static int max = Integer.MIN_VALUE;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        N = Integer.parseInt(br.readLine());
+        N= Integer.parseInt(br.readLine());
         board = new char[N][N];
 
         for (int i = 0; i< N; i++) {
             String s = br.readLine();
-            for (int j = 0; j < N; j++) {
+            for (int j = 0; j< N; j++) {
                 board[i][j] = s.charAt(j);
             }
         }
 
-        // 행
-        for (int i = 0; i<N; i++) {
+        // 확인하는 함수만 따로 만들자
+        
+        // 가로 확인 -> row
+        for (int i = 0; i< N; i++) {
             for (int j = 0; j < N - 1; j++) {
                 if (board[i][j] != board[i][j + 1]) {
-                    System.out.println("ddddddd  "+ i +"  "+ j);
-                    changeBoardX(i,j);
+                    char temp = board[i][j];
+                    board[i][j] = board[i][j + 1];
+                    board[i][j + 1] = temp;
+
+                    check();
+
+                    temp = board[i][j];
+                    board[i][j] = board[i][j + 1];
+                    board[i][j + 1] = temp;
                 }
             }
         }
+        // 세로 확인 -> column
 
-        // 열
-        for (int i = 0; i<N; i++) {
+        for (int i = 0; i< N; i++) {
             for (int j = 0; j < N - 1; j++) {
                 if (board[j][i] != board[j + 1][i]) {
-                    System.out.println("f  "+ j +"  "+ i);
-                    changeBoardY(j,i);
+                    char temp = board[j][i];
+                    board[j][i] = board[j + 1][i];
+                    board[j + 1][i] = temp;
+
+                    check();
+
+                    temp = board[j][i];
+                    board[j][i] = board[j + 1][i];
+                    board[j + 1][i] = temp;
                 }
             }
         }
 
         System.out.println(max);
+
     }
 
-    static void changeBoardX(int y, int x) {
-        char copyBoard[][] = board.clone();
-        char temp;
-        temp = copyBoard[y][x];
-        copyBoard[y][x] = copyBoard[y][x + 1];
-        copyBoard[y][x + 1] = temp;
-
-        countBoard(copyBoard);
-    }
-
-    static void changeBoardY(int y, int x) {
-        char copyBoard[][] = board.clone();
-        char temp;
-        temp = copyBoard[y][x];
-        copyBoard[y][x] = copyBoard[y + 1][x];
-        copyBoard[y + 1][x] = temp;
-
-        countBoard(copyBoard);
-    }
-
-    static void countBoard(char [][] copyBoard) {
-        int count = 0;
-
-        // 열 계산 
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j<N - 1; j++) {
-                if (copyBoard[i][j] == copyBoard[i][j + 1]) {
-                    count++;
-                }else {
-                    if (count > max) {
-                        max = count;
-                    }
-                    count = 0;
-                    break;
-                }
-            }
-            if (count > max) {
-                max = count;
-            }
-            count = 0;
-        }
-
-
-        count = 0;
-        // 행 계산
+    private static void check() {
+        // 
+        
+        int sum = 1;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j< N - 1; j++) {
-                if (copyBoard[j][i] == copyBoard[j + 1][i]) {
-                    count++;
-                }else {
-                    if (count > max) {
-                        max = count;
-                    }
-                    count = 0;
-                    break;
+                if (board[i][j] == board[i][j + 1]) {
+                   sum++;
+                    max = Math.max(max, sum);
+                }
+                else {
+                    sum = 1;
                 }
             }
-            if (count > max) {
-                max = count;
+            
+            sum = 1;
+        }
+
+        sum = 1;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j< N - 1; j++) {
+                if (board[j][i] == board[j + 1][i]) {
+                    sum++;
+                    max = Math.max(max, sum);
+                }
+                else{
+                    sum = 1;
+                }
             }
-            count = 0;
+            sum = 1;
         }
     }
 }
