@@ -145,6 +145,20 @@ public class javaGrammer {
         stack.contains(1);
         stack.peek(); 
     }
+    public static void test() {
+        List<Integer[]> s = new ArrayList<>();
+        Integer [] a = new Integer[2];
+        a[0] = 1;
+        a[1] = 2;
+        s.add(a);
+        s.add(a);
+        double x = 1.0;
+        Integer [] coordinate = new Integer[2];
+        coordinate[1] = (int)x;
+        
+
+    }
+
 
     public static void hashSetGrammer() {
         HashSet<Integer> hashSet = new HashSet<>();
