@@ -36,47 +36,70 @@ double에서 정수일때만을 찾는다면 1로 나눴을때 나머지가 0이
   // 
 
 public class p1 {
-    public static int[][] solution(int[][] arr1, int[][] arr2) {
-        
-        int[][] answer = new int[arr1.length][arr2[0].length];
-        //System.out.println(arr1.length * arr2[0].length);
-        System.out.println(arr2[1][0]);
-        arr2[1][0] = 3;
-        int aIdx = 0;
-        int aIdx2 = 0;
-        
-        for (int i = 0; i < arr1.length; i++) {
-            for (int k = 0; k < arr2[0].length; k++) {
-                int temp = 0;
-                for (int j = 0; j < arr2.length; j++) {
-                   temp += arr1[i][j] * arr2[j][k];
-                }
-                answer[aIdx][aIdx2] = temp;
-                aIdx2++;
+     private static final int dy[] = {0,0,-1,1};
+     private static final int dx[] = {1,-1,0,0};
+
+     private boolean isNextToVolunteer(char [][] room, int x, int y, int exclude) {
+        for (int d = 0; d < 4; d++) {
+            if (d == exclude) continue;
+            int nx = x + dx[d];
+            int ny = y + dy[d];
+            if (ny < 0 || ny >= 5 || nx < 0 || nx >= 5) {
+                continue;
             }
-            aIdx2 = 0;
-            aIdx++;
+            if (room[ny][nx] == 'P') {
+                return true;
+            }
+        }
+        return false;
+     }
+
+     private static boolean isDistanced(char[][] room, int x, int y) {
+        for (int d = 0; d < 4; d++) {
+            int nx = x + dx[d];
+            int ny = y + dy[d];
+
+            if (ny < 0 || ny > 5 || nx < 0 || nx > 5) continue;]
+            switch (room[ny][nx]) {
+                case 'P':
+                 //#regionf;qde
+                
+            }
+        }
+
+        return true;
+    }
+
+    // 거리두기 검사
+    private static boolean isDistanced(char[][] room) {
+        for (int y = 0; y < 5; y++) {
+            for (int x = 0; x < 5; x++) {
+                if (room[y][x] == 'P') {
+                    continue;
+                }
+                if (isDistanced(room, x, y)) return false;
+            }
+        }
+        return true;
+    }
+
+    // 단순히 상하좌우 확인이 아님
+    // P가 있을경우 -> 상하좌우 중 빈 테이블이 있는 방향에 대해 1-B로 진행
+    // 빈테이블과 인접한 위치중 P가 있으면 거리두기 안한것
+    public static int[] solution2(String[][] places) {
+        int[] answer = new int[5];
+        
+        for (String [] place : places) {
+            char [][] room = new char[5][];
+            for (int j = 0; j < 5; j++) {
+                room[j] = place[j].toCharArray();
+            }
         }
         return answer;
     }
 
      public static void main(String[] args) {
-        int [][] arr1 = new int[3][2];
-        int [][] arr2 = new int[2][2];
-
-        arr1[0][0] = 1;
-        arr1[0][1] = 4;
-        arr1[1][0] = 3;
-        arr1[1][1] = 2;
-        arr1[2][0] = 4;
-        arr1[2][1] = 1;
-
-        arr2[0][0] = 3;
-        arr2[0][1] = 3;
-        arr2[0][0] = 3;
-        arr2[1][1] = 3;
-
-       //solution(arr1, arr2);
+        
         char a = 'a';
         System.out.println(a == 'a');
        String p = "p00p";
