@@ -1,44 +1,56 @@
 package programmers;
 
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class Solution2 {
-    public static void main(String[] args) {
+class Solution2 {
+    // 2시 50분
+    public int[] solution(int e, int[] starts) {
+        int[] answer = new int[starts.length];
         
-    }
-     public int solution(String s) {
-        int answer = 0;
-        
-        for (int i = 0; i < s.length(); i++) {
-            StringBuilder sb = new StringBuilder(s);
-            String subString = sb.substring(0,i);
-            sb.delete(0,i);
-            sb.append(subString);
-            //System.out.println(sb.toString());
-            if (rightString(sb.toString())) answer++;
-        }
-        
-        return answer;
-    }
-    // [] {} ()
-    private boolean rightString(String s) {
-        Stack<Character> stack = new Stack<>();
-        for (int i = 0; i <s.length(); i++) {
-            char c = s.charAt(i);
-            if (stack.isEmpty()) {
-                if (c == ')' || c == '}' || c == ']') return false;
-                else stack.push(c);
-            } else {
-                if (c == '(' || c == '{' || c =='[') stack.push(c);
-                else {
-                    if (stack.peek() == '(' && c == ')') stack.pop();
-                    else if (stack.peek() == '{' && c == '}') stack.pop();
-                    else if (stack.peek() == '[' && c == ']') stack.pop();
-                    else return false;
+        for (int i=0; i<starts.length; i++) {
+            int s = starts[i];
+            int result = 0;
+            int resultIdx = 0;
+            
+            for(int j = s; j <= e; j++) {
+                int cnt = 0;
+                if (j == 1) cnt = 1;
+                else if (isNotPrime(j)) {
+                    // 소수가 아니다 
+                    cnt = abbreviation(j);
+                } else {
+                    cnt = 2;
+                }
+                if (result < cnt) {
+                    result = cnt;
+                    resultIdx = j;
                 }
             }
+            answer[i] = resultIdx;
         }
-        if (!stack.isEmpty()) return false;
-        return true;
+        return answer;
+    }
+    // 이건 정상 작동함!
+    private boolean isNotPrime(int j) {
+        boolean flag = false;
+        for (int i = 2; i <= Math.sqrt(j); i++) {
+            if (j % i == 0) {
+                flag = true;
+                break;
+            }
+        }
+        return flag;
+    }
+
+    private static int primeCount(int n) {
+        int cnt = 0;
+        for (int i = 1; i*i <= n; i++) {
+            if (i*i == n) cnt++;
+            else if (n % i == 0) cnt+=2;
+        }
+        return cnt;
     }
 }
